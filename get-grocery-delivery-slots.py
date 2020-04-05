@@ -42,7 +42,7 @@ for slot_day in r.json()['data']['slot_days']:
         slot_time = slot['slot_info']['start_time']
         slot_time = datetime.strptime(slot_time, '%Y-%m-%dT%H:%M:%SZ')
         slot_status = slot['slot_info']['status']
-        df.loc[slot_time] = [slot_status]
+        df.loc[slot_time] = slot_status
 
 # Adding dummy to test script
 df.loc['dummy1'] = 'AVAILABLE'
@@ -50,7 +50,7 @@ df.loc['dummy2'] = 'AVAILABLE'
 
 # Filter for available slots  
 available_df = df[df.slot_status != 'UNAVAILABLE']
-available_list = available_df.values.tolist()
+available_list = available_df.index.tolist()
 
 # If any available slots exist, send a text notification
 if len(available_df) > 0:
