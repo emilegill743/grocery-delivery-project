@@ -44,10 +44,6 @@ for slot_day in r.json()['data']['slot_days']:
         slot_status = slot['slot_info']['status']
         df.loc[slot_time] = slot_status
 
-# Adding dummy to test script
-df.loc['dummy1'] = 'AVAILABLE'
-df.loc['dummy2'] = 'AVAILABLE'
-
 # Filter for available slots  
 available_df = df[df.slot_status != 'UNAVAILABLE']
 available_list = available_df.index.tolist()
@@ -59,7 +55,7 @@ if len(available_df) > 0:
     auth_token = os.environ['TWILIO_AUTH_TOKEN']
     client = Client(account_sid, auth_token)
 
-    message_txt = f'Delivery Slot/s Found: \n{" ".join(available_list)}'
+    message_txt = f'\nDelivery Slot/s Found: \n{" ".join(available_list)}'
 
     message = client.messages \
                     .create(
