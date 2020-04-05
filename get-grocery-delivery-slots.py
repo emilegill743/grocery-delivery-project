@@ -50,7 +50,7 @@ df.loc['dummy2'] = 'AVAILABLE'
 
 # Filter for available slots  
 available_df = df[df.slot_status != 'UNAVAILABLE']
-available_list = available_df.values.to_list()
+available_list = available_df.values.tolist()
 
 # If any available slots exist, send a text notification
 if len(available_df) > 0:
