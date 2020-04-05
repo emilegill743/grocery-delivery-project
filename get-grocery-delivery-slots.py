@@ -59,9 +59,11 @@ if len(available_df) > 0:
     auth_token = os.environ['TWILIO_AUTH_TOKEN']
     client = Client(account_sid, auth_token)
 
+    message_txt = f'Delivery Slot/s Found: \n{" ".join(available_list)}'
+
     message = client.messages \
                     .create(
-                        body=f'Delivery Slot/s Found: \n{" ".join(available_list)}',
+                        body=message_txt,
                         from_=os.environ['TWILIO_NUMBER'],
                         to=os.environ['MY_NUMBER']
                     )
