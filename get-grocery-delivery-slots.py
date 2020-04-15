@@ -48,7 +48,7 @@ for slot_day in r.json()['data']['slot_days']:
         slot_data[slot_time.strftime('%H:%M:%S %d-%m-%Y')] = slot_status
 
 # Filter for available slots
-available_list = [key for (key, value) in slot_data.items() if value != 'UNAVAILABLE']
+available_list = [f'{key} - {value}' for (key, value) in slot_data.items() if value != 'UNAVAILABLE']
 
 # If any available slots exist, send a text notification
 if len(available_list) > 0:
