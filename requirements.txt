@@ -1,3 +1,2 @@
 requests==2.22.0
-pandas==0.25.1
 twilio==6.38.0
